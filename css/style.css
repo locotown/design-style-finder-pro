@@ -51,7 +51,7 @@ header, main, nav, .overlay, .detail-panel, .compare-bar, .compare-modal, .curre
   z-index: 1;
 }
 
-/* Visual Effect: Neon/Cyber Text Glow */
+/* Visual Effect: Neon/Cyber/Matrix Text Glow */
 [data-style-theme="neon"] header h1,
 [data-style-theme="neon"] .tone-title {
   text-shadow: 0 0 20px var(--glow-color, transparent), 0 0 40px var(--glow-color, transparent);
@@ -59,6 +59,11 @@ header, main, nav, .overlay, .detail-panel, .compare-bar, .compare-modal, .curre
 
 [data-style-theme="cyber"] header h1,
 [data-style-theme="cyber"] .tone-title {
+  text-shadow: 0 0 15px var(--glow-color, transparent), 0 0 30px var(--glow-color, transparent);
+}
+
+[data-style-theme="matrix"] header h1,
+[data-style-theme="matrix"] .tone-title {
   text-shadow: 0 0 15px var(--glow-color, transparent), 0 0 30px var(--glow-color, transparent);
 }
 

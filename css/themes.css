@@ -207,6 +207,15 @@
   --accent: #7EE787;
   --font-heading: 'JetBrains Mono', monospace;
   --font-body: 'JetBrains Mono', monospace;
+  /* Visual Effect: CRT Scanlines */
+  --bg-pattern: repeating-linear-gradient(
+    0deg,
+    rgba(126,231,135,0.02) 0px,
+    rgba(126,231,135,0.02) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  --bg-pattern-size: 100% 100%;
 }
 
 /* Matrix */
@@ -221,6 +230,10 @@
   --accent: #00FF41;
   --font-heading: 'JetBrains Mono', monospace;
   --font-body: 'JetBrains Mono', monospace;
+  /* Visual Effect: Green Glow from Top */
+  --glow-color: #00FF41;
+  --bg-pattern: radial-gradient(ellipse at 50% 0%, rgba(0,255,65,0.08) 0%, transparent 60%);
+  --bg-pattern-size: 100% 100%;
 }
 
 /* Holographic */
@@ -235,6 +248,15 @@
   --accent: #A8EDEA;
   --font-heading: 'Space Grotesk', sans-serif;
   --font-body: 'Noto Sans JP', sans-serif;
+  /* Visual Effect: Shimmer/Iridescent */
+  --bg-pattern: linear-gradient(45deg,
+    transparent 30%,
+    rgba(168,237,234,0.04) 40%,
+    rgba(254,214,227,0.04) 50%,
+    rgba(168,237,234,0.04) 60%,
+    transparent 70%
+  );
+  --bg-pattern-size: 200% 200%;
 }
 
 /* AI Neural */
