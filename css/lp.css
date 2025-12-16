@@ -792,6 +792,118 @@ html {
   color: #5a4400;
 }
 
+/* Sample Card Hover - Zoom hint */
+.lp-sample-card {
+  cursor: pointer;
+}
+
+.lp-sample-zoom {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 12px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.7));
+  color: white;
+  font-size: 0.85rem;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.lp-sample-image {
+  position: relative;
+}
+
+.lp-sample-card:hover .lp-sample-zoom {
+  opacity: 1;
+}
+
+/* Sample Modal */
+.sample-modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 9998;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.sample-modal-overlay.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.sample-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.9);
+  background: white;
+  border-radius: 16px;
+  max-width: 90vw;
+  max-height: 90vh;
+  z-index: 9999;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+.sample-modal.active {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+.sample-modal-close {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border: none;
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  border-radius: 50%;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.2s ease;
+}
+
+.sample-modal-close:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.sample-modal-title {
+  padding: 16px 60px 16px 20px;
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  background: #f8f8f8;
+  border-bottom: 1px solid #eee;
+}
+
+.sample-modal-image {
+  max-height: calc(90vh - 60px);
+  overflow: auto;
+}
+
+.sample-modal-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 /* ---------- Responsive ---------- */
 @media (max-width: 640px) {
   :root {

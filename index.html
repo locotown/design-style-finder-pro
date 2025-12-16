@@ -168,9 +168,10 @@
         <h2 class="lp-section-title">実際の作成例</h2>
         <p class="lp-section-subtitle">このツールで生成したYAMLをNotebookLMに渡して作成した実例です</p>
         <div class="lp-samples-grid">
-          <div class="lp-sample-card">
+          <div class="lp-sample-card" onclick="openSampleModal('images/samples/sample_slide_swissminimal.png', 'Swiss Minimal - スライド資料')">
             <div class="lp-sample-image">
               <img src="images/samples/sample_slide_swissminimal.png" alt="Swiss Minimalスタイルのスライド" loading="lazy">
+              <div class="lp-sample-zoom">🔍 クリックで拡大</div>
             </div>
             <div class="lp-sample-info">
               <span class="lp-sample-style">Swiss Minimal</span>
@@ -178,9 +179,10 @@
             </div>
             <p class="lp-sample-desc">クリーンで洗練されたビジネス向けプレゼンテーション</p>
           </div>
-          <div class="lp-sample-card">
+          <div class="lp-sample-card" onclick="openSampleModal('images/samples/sample_infograph_popart.png', 'Pop Art - インフォグラフィック')">
             <div class="lp-sample-image">
               <img src="images/samples/sample_infograph_popart.png" alt="Pop Artスタイルのインフォグラフィック" loading="lazy">
+              <div class="lp-sample-zoom">🔍 クリックで拡大</div>
             </div>
             <div class="lp-sample-info">
               <span class="lp-sample-style">Pop Art</span>
@@ -452,8 +454,36 @@
 
   </div><!-- /tool-section -->
 
+  <!-- Sample Modal -->
+  <div class="sample-modal-overlay" id="sampleModalOverlay" onclick="closeSampleModal()"></div>
+  <div class="sample-modal" id="sampleModal">
+    <button class="sample-modal-close" onclick="closeSampleModal()">×</button>
+    <h3 class="sample-modal-title" id="sampleModalTitle"></h3>
+    <div class="sample-modal-image">
+      <img id="sampleModalImg" src="" alt="">
+    </div>
+  </div>
+
   <!-- Scripts -->
   <script src="js/data.js?v=2"></script>
   <script src="js/app.js?v=2"></script>
+  <script>
+    // Sample Modal Functions
+    function openSampleModal(src, title) {
+      document.getElementById('sampleModalImg').src = src;
+      document.getElementById('sampleModalTitle').textContent = title;
+      document.getElementById('sampleModal').classList.add('active');
+      document.getElementById('sampleModalOverlay').classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+    function closeSampleModal() {
+      document.getElementById('sampleModal').classList.remove('active');
+      document.getElementById('sampleModalOverlay').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') closeSampleModal();
+    });
+  </script>
 </body>
 </html>
