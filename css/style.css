@@ -260,6 +260,7 @@ main {
 
 /* Style Card */
 .style-card {
+  position: relative;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: 16px;
@@ -604,6 +605,46 @@ main {
 @media (max-width: 600px) {
   .style-grid { grid-template-columns: 1fr; }
   .detail-panel { max-width: 100%; }
+}
+
+/* ===== Favorites ===== */
+
+/* Card Favorite Button */
+.favorite-btn {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.4);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+  z-index: 5;
+  color: rgba(255,255,255,0.6);
+}
+
+.favorite-btn:hover {
+  background: rgba(0,0,0,0.6);
+  color: #ff6b6b;
+  transform: scale(1.1);
+}
+
+.favorite-btn.active {
+  color: #ff6b6b;
+  background: rgba(255,107,107,0.2);
+}
+
+.favorite-btn.active svg {
+  fill: #ff6b6b;
+}
+
+.favorite-btn svg {
+  transition: all 0.2s;
 }
 
 /* ===== Compare Mode ===== */

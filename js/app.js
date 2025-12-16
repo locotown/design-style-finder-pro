@@ -14,9 +14,65 @@ let currentAppliedTheme = null;
 let currentPurpose = 'presentation';
 let currentSearchTerm = '';
 let compareStyles = []; // Max 4 styles for comparison
+let favorites = []; // Favorite style IDs stored in LocalStorage
+
+// ===== LocalStorage for Favorites =====
+const FAVORITES_KEY = 'design-style-finder-favorites';
+
+function loadFavorites() {
+  try {
+    const stored = localStorage.getItem(FAVORITES_KEY);
+    favorites = stored ? JSON.parse(stored) : [];
+  } catch {
+    favorites = [];
+  }
+}
+
+function saveFavorites() {
+  try {
+    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+  } catch {
+    // LocalStorage may be unavailable or full
+  }
+}
+
+function toggleFavorite(styleId) {
+  const index = favorites.indexOf(styleId);
+  if (index > -1) {
+    favorites.splice(index, 1);
+  } else {
+    favorites.push(styleId);
+  }
+  saveFavorites();
+  updateFavoritesUI();
+  updateFavoritesCount();
+}
 
 // ===== Tone Navigation =====
 function buildToneNav() {
+  // Add favorites tab first
+  const favBtn = document.createElement('button');
+  favBtn.className = 'tone-btn';
+  favBtn.dataset.tone = 'favorites';
+
+  const favEmoji = document.createElement('span');
+  favEmoji.className = 'emoji';
+  favEmoji.textContent = '❤️';
+
+  const favLabel = document.createElement('span');
+  favLabel.textContent = 'お気に入り';
+
+  const favCount = document.createElement('span');
+  favCount.className = 'count';
+  favCount.id = 'favoritesCount';
+  favCount.textContent = favorites.length;
+
+  favBtn.appendChild(favEmoji);
+  favBtn.appendChild(favLabel);
+  favBtn.appendChild(favCount);
+  toneNav.appendChild(favBtn);
+
+  // Add regular tone tabs
   tones.forEach(t => {
     const count = t.id === 'all' ? styles.length : styles.filter(s => s.tone === t.id).length;
     const btn = document.createElement('button');
@@ -41,6 +97,30 @@ function buildToneNav() {
   });
 }
 
+function updateFavoritesCount() {
+  const countEl = document.getElementById('favoritesCount');
+  if (countEl) {
+    countEl.textContent = favorites.length;
+  }
+}
+
+function updateFavoritesUI() {
+  // Update all favorite buttons in cards
+  document.querySelectorAll('.style-card').forEach(card => {
+    const styleId = card.dataset.styleId;
+    const favBtn = card.querySelector('.favorite-btn');
+    if (favBtn) {
+      favBtn.classList.toggle('active', favorites.includes(styleId));
+    }
+  });
+
+  // If currently viewing favorites tab, update the grid
+  const activeTone = document.querySelector('.tone-btn.active')?.dataset.tone;
+  if (activeTone === 'favorites') {
+    updateGridWithSearch();
+  }
+}
+
 const toneBtns = () => document.querySelectorAll('.tone-btn');
 const toneSections = () => document.querySelectorAll('.tone-section');
 
@@ -52,7 +132,9 @@ function setupToneNavigation() {
     toneBtns().forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
     const tone = btn.dataset.tone;
-    toneSections().forEach(s => s.classList.toggle('active', s.dataset.section === tone));
+    // For favorites, show the "all" section but filtered to favorites
+    const sectionToShow = tone === 'favorites' ? 'all' : tone;
+    toneSections().forEach(s => s.classList.toggle('active', s.dataset.section === sectionToShow));
     updateGridWithSearch();
   });
 }
@@ -72,6 +154,24 @@ function createCard(style) {
   const card = document.createElement('div');
   card.className = 'style-card';
   card.dataset.styleId = style.id;
+
+  // Favorite button
+  const favoriteBtn = document.createElement('button');
+  favoriteBtn.className = 'favorite-btn';
+  if (favorites.includes(style.id)) {
+    favoriteBtn.classList.add('active');
+  }
+  favoriteBtn.innerHTML = `
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
+    </svg>
+  `;
+  favoriteBtn.onclick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    toggleFavorite(style.id);
+  };
+  card.appendChild(favoriteBtn);
 
   // Compare checkbox
   const checkbox = document.createElement('div');
@@ -141,15 +241,23 @@ function populateGrids() {
 function filterStyles(searchTerm, tone) {
   const term = searchTerm.toLowerCase().trim();
   return styles.filter(s => {
-    const toneMatch = tone === 'all' || s.tone === tone;
-    if (!term) return toneMatch;
+    // Handle favorites filter
+    if (tone === 'favorites') {
+      if (!favorites.includes(s.id)) return false;
+    } else {
+      const toneMatch = tone === 'all' || s.tone === tone;
+      if (!toneMatch) return false;
+    }
+
+    // If no search term, return based on tone/favorites match
+    if (!term) return true;
 
     const nameMatch = s.name.toLowerCase().includes(term) || s.nameJp.includes(term);
     const descMatch = s.desc.toLowerCase().includes(term);
     const tagMatch = s.tags.some(t => t.toLowerCase().includes(term));
     const featureMatch = s.features.some(f => f.toLowerCase().includes(term));
 
-    return toneMatch && (nameMatch || descMatch || tagMatch || featureMatch);
+    return nameMatch || descMatch || tagMatch || featureMatch;
   });
 }
 
@@ -171,9 +279,11 @@ function updateGridWithSearch() {
   const allGrid = document.getElementById('allGrid');
   allGrid.replaceChildren();
 
-  if (activeTone === 'all') {
+  if (activeTone === 'all' || activeTone === 'favorites') {
+    // For 'all' and 'favorites', use the already filtered results
     filteredStyles.forEach(s => allGrid.appendChild(createCard(s)));
   } else {
+    // For specific tone tabs, show all styles (filtered by search only)
     filterStyles(currentSearchTerm, 'all').forEach(s => allGrid.appendChild(createCard(s)));
   }
 
@@ -671,6 +781,7 @@ function setupCompareMode() {
 
 // ===== Initialize =====
 function init() {
+  loadFavorites(); // Load favorites from LocalStorage before building UI
   buildToneNav();
   populateGrids();
   setupToneNavigation();
