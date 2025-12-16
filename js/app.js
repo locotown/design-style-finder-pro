@@ -401,16 +401,113 @@ function setupDetailPanel() {
 }
 
 // ===== Purpose YAML Generation =====
+
+// プレゼンテーション用レイアウト（12種）
+const presentationLayouts = [
+  { id: 'title', name: 'タイトルスライド', base: 'メインタイトル、サブタイトル、発表者情報' },
+  { id: 'agenda', name: 'アジェンダ', base: '目次、番号付きリスト形式' },
+  { id: 'section', name: 'セクション区切り', base: '章タイトル、背景パターン' },
+  { id: 'content', name: 'コンテンツ（テキスト）', base: '見出し、本文、箇条書き' },
+  { id: 'twoColumn', name: 'コンテンツ（2カラム）', base: '左右分割レイアウト' },
+  { id: 'data', name: 'データ・チャート', base: 'グラフ中心、数値ハイライト' },
+  { id: 'image', name: '画像メイン', base: 'フル画像、キャプション' },
+  { id: 'quote', name: '引用・強調', base: '大きなテキスト、中央配置' },
+  { id: 'timeline', name: 'タイムライン', base: '時系列、ステップ表示' },
+  { id: 'compare', name: '比較スライド', base: 'Before/After、A vs B形式' },
+  { id: 'summary', name: 'まとめ', base: 'キーポイント、次のステップ' },
+  { id: 'end', name: '終了スライド', base: 'Thank you、連絡先' }
+];
+
+// スタイル特徴に基づく修飾子マッピング
+const styleModifiers = {
+  // toneベースの修飾子
+  toneModifiers: {
+    minimal: { title: '余白を活かした配置', section: 'シンプルな区切り線', quote: 'ミニマルな強調' },
+    tech: { title: 'グロー効果を適用', section: 'テクニカルなパターン背景', data: 'ダークUIのグラフ' },
+    casual: { title: 'ポップなグラデーション背景', quote: '絵文字を活用した強調', end: 'カジュアルなクロージング' },
+    premium: { title: '中央に品格ある配置', section: '装飾的なセパレーター', quote: 'セリフ体イタリックで引用' },
+    creative: { title: 'アーティスティックな配置', image: 'デュオトーンフィルター適用', compare: 'ビジュアル重視の比較' },
+    corporate: { title: 'フォーマルな配置', agenda: '番号付き公式フォーマット', summary: '箇条書きで簡潔に' }
+  },
+  // featuresベースの修飾子（キーワードマッチング）
+  featureModifiers: {
+    'グリッド': { title: 'グリッド上に配置', content: 'グリッドベースのレイアウト', data: 'グリッド配置のグラフ' },
+    '余白': { title: '余白を十分に確保', content: 'ゆったりした余白', quote: '余白で引き立てる' },
+    'ネオン': { title: '発光効果のタイトル', section: 'ネオングローの区切り', quote: 'text-shadowで発光' },
+    'グロー': { title: 'グロー効果を適用', data: '発光するデータポイント', quote: '光る強調テキスト' },
+    'ゴールド': { title: 'ゴールドの装飾枠', section: 'ゴールドラインの区切り', end: 'ゴールド装飾のクロージング' },
+    'セリフ': { title: 'セリフ体の美しい見出し', quote: 'エレガントなイタリック', content: 'セリフ体で可読性向上' },
+    '明朝': { title: '明朝体の品格ある配置', quote: '縦書き風の引用表示', section: '和のテイストを維持' },
+    '角丸': { title: '丸みのある要素配置', content: '角丸カードで情報整理', data: '角丸のグラフコンテナ' },
+    'ダーク': { title: 'ダーク背景に映える配色', section: 'コントラストの効いた区切り', data: 'ダークモードのグラフ' },
+    '幾何学': { title: '幾何学図形の装飾', section: '図形パターンの背景', compare: '図形で視覚的に区分け' },
+    'グラデ': { title: 'グラデーション背景', section: 'グラデーションの区切り', quote: 'グラデーション文字' },
+    'ドット': { title: 'ドットパターン背景', content: 'ドット装飾のカード', image: 'ドットオーバーレイ' },
+    'モノスペース': { title: 'コード風タイポグラフィ', content: 'ターミナル風の箇条書き', data: '等幅フォントの数値' },
+    'ボーダー': { title: '太いボーダーで囲む', content: 'ボーダーで区切り', compare: 'ボーダーでA/B区分け' },
+    '中央配置': { title: 'センター揃えの配置', quote: '中央に大きく表示', end: '中央配置でバランス' },
+    '縦': { title: '縦ラインを活用', section: '縦線の区切り', timeline: '縦方向のタイムライン' },
+    '円': { title: '円形モチーフを配置', image: '円形マスクの画像', timeline: '円形のステップマーカー' },
+    'バッジ': { title: 'バッジ風のラベル', agenda: 'バッジ付き番号', summary: 'バッジでハイライト' }
+  }
+};
+
+// スタイルに基づいて動的にレイアウト説明を生成
+function generateDynamicLayoutDesc(layoutId, style) {
+  const layout = presentationLayouts.find(l => l.id === layoutId);
+  if (!layout) return '';
+
+  let desc = layout.base;
+  const additions = [];
+
+  // toneに基づく修飾子
+  const toneModifier = styleModifiers.toneModifiers[style.tone]?.[layoutId];
+  if (toneModifier) {
+    additions.push(toneModifier);
+  }
+
+  // featuresに基づく修飾子（最大2つまで）
+  let featureCount = 0;
+  for (const feature of style.features) {
+    if (featureCount >= 2) break;
+    for (const [key, modifiers] of Object.entries(styleModifiers.featureModifiers)) {
+      if (feature.includes(key) && modifiers[layoutId] && !additions.includes(modifiers[layoutId])) {
+        additions.push(modifiers[layoutId]);
+        featureCount++;
+        break;
+      }
+    }
+  }
+
+  // アクセントカラー情報を追加（title, section, endのみ）
+  if (['title', 'section', 'end'].includes(layoutId) && style.colors.length > 2) {
+    const accent = style.colors[2];
+    if (accent.name && accent.name !== '文字') {
+      additions.push(`${accent.name}をアクセントに`);
+    }
+  }
+
+  // 説明文を組み立て
+  if (additions.length > 0) {
+    desc += '、' + additions.slice(0, 2).join('、');
+  }
+
+  return desc;
+}
+
+// プレゼンテーション用の動的レイアウト配列を生成
+function generatePresentationLayouts(style) {
+  return presentationLayouts.map(layout => ({
+    name: layout.name,
+    desc: generateDynamicLayoutDesc(layout.id, style)
+  }));
+}
+
 const purposeConfigs = {
   presentation: {
     title: 'プレゼンテーション用デザイン設定',
     layoutDesc: 'スライド構成',
-    layouts: [
-      { name: 'タイトルスライド', desc: '大きな見出し、サブタイトル、背景パターン' },
-      { name: 'コンテンツスライド', desc: '左右2カラム、箇条書き、図表配置' },
-      { name: '強調スライド', desc: 'キーメッセージを中央大きく配置' },
-      { name: 'データスライド', desc: 'グラフ・チャート中心、補足テキスト' }
-    ],
+    layouts: [], // 動的生成のため空
     tips: '余白を多めに取り、1スライド1メッセージを心がける'
   },
   website: {
@@ -466,7 +563,13 @@ function generatePurposeYaml(style, purposeId) {
   const features = style.features.join('、');
 
   const config = purposeConfigs[purposeId];
-  const layoutsYaml = config.layouts.map(l =>
+
+  // プレゼンテーション用は動的生成、それ以外は静的
+  const layouts = purposeId === 'presentation'
+    ? generatePresentationLayouts(style)
+    : config.layouts;
+
+  const layoutsYaml = layouts.map(l =>
     `    ${l.name}:\n      説明: "${l.desc}"`
   ).join('\n');
 
