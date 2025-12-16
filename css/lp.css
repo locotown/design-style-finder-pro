@@ -764,10 +764,25 @@ html {
 }
 
 .lp-sample-desc {
-  padding: 8px 20px 20px;
+  padding: 8px 20px 12px;
   color: var(--lp-text-muted);
   font-size: 0.9rem;
   line-height: 1.6;
+}
+
+.lp-sample-link {
+  display: block;
+  padding: 10px 20px 16px;
+  color: var(--lp-accent);
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.lp-sample-link:hover {
+  color: #c62828;
+  text-decoration: underline;
 }
 
 .lp-samples-note {
