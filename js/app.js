@@ -13,6 +13,7 @@ let currentDetailStyle = null;
 let currentAppliedTheme = null;
 let currentPurpose = 'presentation';
 let currentSearchTerm = '';
+let compareStyles = []; // Max 4 styles for comparison
 
 // ===== Tone Navigation =====
 function buildToneNav() {
@@ -70,6 +71,25 @@ function createPreviewContent(styleId, previewClass) {
 function createCard(style) {
   const card = document.createElement('div');
   card.className = 'style-card';
+  card.dataset.styleId = style.id;
+
+  // Compare checkbox
+  const checkbox = document.createElement('div');
+  checkbox.className = 'compare-checkbox';
+  if (compareStyles.includes(style.id)) {
+    checkbox.classList.add('checked');
+  }
+  checkbox.innerHTML = `
+    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3">
+      <polyline points="20 6 9 17 4 12"></polyline>
+    </svg>
+  `;
+  checkbox.onclick = (e) => {
+    e.stopPropagation();
+    e.preventDefault();
+    toggleCompareStyle(style.id);
+  };
+  card.appendChild(checkbox);
 
   // Preview
   card.appendChild(createPreviewContent(style.id, style.previewClass));
@@ -436,6 +456,219 @@ function setupThemeApplication() {
   badgeResetBtn.addEventListener('click', resetStyleTheme);
 }
 
+// ===== Compare Mode =====
+const compareBar = document.getElementById('compareBar');
+const compareSelected = document.getElementById('compareSelected');
+const compareCount = document.getElementById('compareCount');
+const compareBtn = document.getElementById('compareBtn');
+const compareClearBtn = document.getElementById('compareClearBtn');
+const compareOverlay = document.getElementById('compareOverlay');
+const compareModal = document.getElementById('compareModal');
+const compareModalClose = document.getElementById('compareModalClose');
+const compareModalContent = document.getElementById('compareModalContent');
+
+function toggleCompareStyle(styleId) {
+  const index = compareStyles.indexOf(styleId);
+  if (index > -1) {
+    // Remove from comparison
+    compareStyles.splice(index, 1);
+  } else if (compareStyles.length < 4) {
+    // Add to comparison (max 4)
+    compareStyles.push(styleId);
+  }
+  updateCompareUI();
+}
+
+function updateCompareUI() {
+  // Update card checkboxes
+  document.querySelectorAll('.style-card').forEach(card => {
+    const styleId = card.dataset.styleId;
+    const checkbox = card.querySelector('.compare-checkbox');
+    if (checkbox) {
+      const isSelected = compareStyles.includes(styleId);
+      checkbox.classList.toggle('checked', isSelected);
+    }
+  });
+
+  // Update compare bar
+  updateCompareBar();
+}
+
+function updateCompareBar() {
+  // Update count
+  compareCount.textContent = compareStyles.length;
+
+  // Update compare button state
+  compareBtn.disabled = compareStyles.length < 2;
+
+  // Update selected chips
+  compareSelected.replaceChildren();
+  compareStyles.forEach(styleId => {
+    const style = styles.find(s => s.id === styleId);
+    if (!style) return;
+
+    const chip = document.createElement('div');
+    chip.className = 'compare-chip';
+
+    const name = document.createElement('span');
+    name.textContent = style.nameJp;
+
+    const removeBtn = document.createElement('button');
+    removeBtn.className = 'chip-remove';
+    removeBtn.innerHTML = '×';
+    removeBtn.onclick = () => toggleCompareStyle(styleId);
+
+    chip.appendChild(name);
+    chip.appendChild(removeBtn);
+    compareSelected.appendChild(chip);
+  });
+
+  // Show/hide bar
+  compareBar.classList.toggle('visible', compareStyles.length > 0);
+}
+
+function openCompareModal() {
+  if (compareStyles.length < 2) return;
+
+  renderCompareGrid();
+  compareModal.classList.add('open');
+  compareOverlay.classList.add('open');
+}
+
+function closeCompareModal() {
+  compareModal.classList.remove('open');
+  compareOverlay.classList.remove('open');
+}
+
+function renderCompareGrid() {
+  compareModalContent.replaceChildren();
+
+  const grid = document.createElement('div');
+  grid.className = 'compare-grid';
+  grid.dataset.count = compareStyles.length;
+
+  compareStyles.forEach(styleId => {
+    const style = styles.find(s => s.id === styleId);
+    if (!style) return;
+
+    const item = document.createElement('div');
+    item.className = 'compare-item';
+
+    // Header
+    const header = document.createElement('div');
+    header.className = 'compare-item-header';
+
+    const title = document.createElement('h4');
+    title.className = 'compare-item-title';
+    title.textContent = style.name;
+
+    const subtitle = document.createElement('span');
+    subtitle.className = 'compare-item-subtitle';
+    subtitle.textContent = style.nameJp;
+
+    header.appendChild(title);
+    header.appendChild(subtitle);
+    item.appendChild(header);
+
+    // Preview
+    const previewWrapper = document.createElement('div');
+    previewWrapper.className = 'compare-item-preview';
+    previewWrapper.appendChild(createPreviewContent(style.id, style.previewClass));
+    item.appendChild(previewWrapper);
+
+    // Colors
+    const colorsSection = document.createElement('div');
+    colorsSection.className = 'compare-item-section';
+
+    const colorsTitle = document.createElement('div');
+    colorsTitle.className = 'compare-section-title';
+    colorsTitle.textContent = '配色';
+    colorsSection.appendChild(colorsTitle);
+
+    const colorsRow = document.createElement('div');
+    colorsRow.className = 'compare-colors';
+    style.colors.forEach(c => {
+      const swatch = document.createElement('div');
+      swatch.className = 'compare-color-swatch';
+      swatch.style.background = c.hex;
+      swatch.title = `${c.name}: ${c.hex}`;
+      colorsRow.appendChild(swatch);
+    });
+    colorsSection.appendChild(colorsRow);
+    item.appendChild(colorsSection);
+
+    // Fonts
+    const fontsSection = document.createElement('div');
+    fontsSection.className = 'compare-item-section';
+
+    const fontsTitle = document.createElement('div');
+    fontsTitle.className = 'compare-section-title';
+    fontsTitle.textContent = 'フォント';
+    fontsSection.appendChild(fontsTitle);
+
+    style.fonts.forEach(f => {
+      const fontRow = document.createElement('div');
+      fontRow.className = 'compare-font';
+      fontRow.innerHTML = `<span class="compare-font-label">${f.label}</span><span class="compare-font-name">${f.name}</span>`;
+      fontsSection.appendChild(fontRow);
+    });
+    item.appendChild(fontsSection);
+
+    // Features
+    const featuresSection = document.createElement('div');
+    featuresSection.className = 'compare-item-section';
+
+    const featuresTitle = document.createElement('div');
+    featuresTitle.className = 'compare-section-title';
+    featuresTitle.textContent = '特徴';
+    featuresSection.appendChild(featuresTitle);
+
+    const featuresList = document.createElement('div');
+    featuresList.className = 'compare-features';
+    style.features.forEach(f => {
+      const tag = document.createElement('span');
+      tag.className = 'compare-feature-tag';
+      tag.textContent = f;
+      featuresList.appendChild(tag);
+    });
+    featuresSection.appendChild(featuresList);
+    item.appendChild(featuresSection);
+
+    // Apply button
+    const applyBtn = document.createElement('button');
+    applyBtn.className = 'compare-apply-btn';
+    applyBtn.textContent = 'このスタイルを適用';
+    applyBtn.onclick = () => {
+      applyStyleTheme(style.id);
+      closeCompareModal();
+    };
+    item.appendChild(applyBtn);
+
+    grid.appendChild(item);
+  });
+
+  compareModalContent.appendChild(grid);
+}
+
+function clearCompareStyles() {
+  compareStyles = [];
+  updateCompareUI();
+}
+
+function setupCompareMode() {
+  compareBtn.addEventListener('click', openCompareModal);
+  compareClearBtn.addEventListener('click', clearCompareStyles);
+  compareModalClose.addEventListener('click', closeCompareModal);
+  compareOverlay.addEventListener('click', closeCompareModal);
+
+  // ESC key to close modal
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && compareModal.classList.contains('open')) {
+      closeCompareModal();
+    }
+  });
+}
+
 // ===== Initialize =====
 function init() {
   buildToneNav();
@@ -444,6 +677,7 @@ function init() {
   setupSearch();
   setupDetailPanel();
   setupThemeApplication();
+  setupCompareMode();
 }
 
 // Run when DOM is ready

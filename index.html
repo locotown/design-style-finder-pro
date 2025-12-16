@@ -165,6 +165,41 @@
     <button id="badgeResetBtn">×</button>
   </div>
 
+  <!-- Compare Bar -->
+  <div class="compare-bar" id="compareBar">
+    <div class="compare-bar-content">
+      <div class="compare-selected" id="compareSelected"></div>
+      <div class="compare-actions">
+        <span class="compare-count"><span id="compareCount">0</span>/4 選択中</span>
+        <button class="compare-btn" id="compareBtn" disabled>
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="3" width="7" height="7"></rect>
+            <rect x="14" y="3" width="7" height="7"></rect>
+            <rect x="3" y="14" width="7" height="7"></rect>
+            <rect x="14" y="14" width="7" height="7"></rect>
+          </svg>
+          比較する
+        </button>
+        <button class="compare-clear-btn" id="compareClearBtn">クリア</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Compare Modal -->
+  <div class="compare-overlay" id="compareOverlay"></div>
+  <div class="compare-modal" id="compareModal">
+    <div class="compare-modal-header">
+      <h3>スタイル比較</h3>
+      <button class="compare-modal-close" id="compareModalClose">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="compare-modal-content" id="compareModalContent"></div>
+  </div>
+
   <!-- Scripts -->
   <script src="js/data.js"></script>
   <script src="js/app.js"></script>

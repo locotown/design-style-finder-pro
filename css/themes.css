@@ -85,6 +85,10 @@
   --accent: #CCCCCC;
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Noto Sans JP', sans-serif;
+  /* Visual Effect: Grid Background */
+  --bg-pattern: linear-gradient(rgba(0,0,0,0.04) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,0,0,0.04) 1px, transparent 1px);
+  --bg-pattern-size: 30px 30px;
 }
 
 /* Bauhaus */
@@ -143,6 +147,10 @@
   --accent: #4285F4;
   --font-heading: 'Space Grotesk', sans-serif;
   --font-body: 'JetBrains Mono', monospace;
+  /* Visual Effect: Grid Pattern */
+  --bg-pattern: linear-gradient(rgba(66,133,244,0.05) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(66,133,244,0.05) 1px, transparent 1px);
+  --bg-pattern-size: 40px 40px;
 }
 
 /* Neon Glow */
@@ -157,6 +165,10 @@
   --accent: #00FF88;
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'JetBrains Mono', monospace;
+  /* Visual Effect: Neon Glow */
+  --glow-color: #00FF88;
+  --bg-pattern: radial-gradient(ellipse at 50% 0%, rgba(0,255,136,0.08) 0%, transparent 50%);
+  --bg-pattern-size: 100% 100%;
 }
 
 /* Cyberpunk */
@@ -171,6 +183,16 @@
   --accent: #FF00FF;
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Noto Sans JP', sans-serif;
+  /* Visual Effect: Scanlines */
+  --glow-color: #FF00FF;
+  --bg-pattern: repeating-linear-gradient(
+    0deg,
+    rgba(0,0,0,0.15) 0px,
+    rgba(0,0,0,0.15) 1px,
+    transparent 1px,
+    transparent 3px
+  );
+  --bg-pattern-size: 100% 100%;
 }
 
 /* Terminal */
@@ -439,6 +461,8 @@
   --accent: #FFFFFF;
   --font-heading: 'Playfair Display', serif;
   --font-body: 'Noto Sans JP', sans-serif;
+  /* Visual Effect: Vignette */
+  --vignette: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,0.4) 100%);
 }
 
 /* Classic Serif */
@@ -557,6 +581,9 @@
   --accent: #FF5722;
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Noto Sans JP', sans-serif;
+  /* Visual Effect: Dot Pattern (Ben-Day dots) */
+  --bg-pattern: radial-gradient(circle, rgba(255,87,34,0.08) 1px, transparent 1px);
+  --bg-pattern-size: 8px 8px;
 }
 
 /* Collage */
@@ -585,6 +612,9 @@
   --accent: #E0E0E0;
   --font-heading: 'Outfit', sans-serif;
   --font-body: 'Noto Sans JP', sans-serif;
+  /* Visual Effect: Noise Texture */
+  --bg-pattern: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  --bg-pattern-opacity: 0.03;
 }
 
 /* Experimental */
