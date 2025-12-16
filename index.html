@@ -15,7 +15,7 @@
   <link rel="stylesheet" href="css/style.css">
   <link rel="stylesheet" href="css/preview-styles.css">
   <link rel="stylesheet" href="css/themes.css">
-  <link rel="stylesheet" href="css/lp.css?v=2">
+  <link rel="stylesheet" href="css/lp.css?v=3">
 </head>
 <body>
   <!-- ========== LP Sections ========== -->
@@ -78,22 +78,39 @@
     <!-- How To Use -->
     <section class="lp-howto">
       <div class="lp-section">
-        <h2 class="lp-section-title">使い方はかんたん3ステップ</h2>
-        <div class="lp-steps">
-          <div class="lp-step">
+        <h2 class="lp-section-title">使い方はかんたん4ステップ</h2>
+        <div class="lp-steps-visual">
+          <div class="lp-step-visual">
             <div class="lp-step-number">1</div>
+            <div class="lp-step-gif">
+              <img src="images/howto/step1-select-style.gif" alt="スタイルを選ぶ" loading="lazy">
+            </div>
             <h3>スタイルを選ぶ</h3>
             <p>47種類からイメージに合うものをクリック</p>
           </div>
-          <div class="lp-step">
+          <div class="lp-step-visual">
             <div class="lp-step-number">2</div>
+            <div class="lp-step-gif">
+              <img src="images/howto/step2-choose-purpose.gif" alt="用途を選ぶ" loading="lazy">
+            </div>
             <h3>用途を選ぶ</h3>
             <p>プレゼン・Web・アプリ・LP・SNSから選択</p>
           </div>
-          <div class="lp-step">
+          <div class="lp-step-visual">
             <div class="lp-step-number">3</div>
+            <div class="lp-step-gif">
+              <img src="images/howto/step3-copy-yaml.gif" alt="YAMLをコピー" loading="lazy">
+            </div>
             <h3>YAMLをコピー</h3>
-            <p>AIにそのまま貼り付けるだけ</p>
+            <p>コピーボタンをクリックするだけ</p>
+          </div>
+          <div class="lp-step-visual">
+            <div class="lp-step-number">4</div>
+            <div class="lp-step-gif">
+              <img src="images/howto/step4-paste-to-ai.png" alt="AIに貼り付け" loading="lazy">
+            </div>
+            <h3>AIに貼り付け</h3>
+            <p>「このスタイルで○○を作って」と指示するだけ</p>
           </div>
         </div>
       </div>
@@ -145,6 +162,39 @@
       </div>
     </section>
 
+    <!-- Sample Gallery -->
+    <section class="lp-samples">
+      <div class="lp-section">
+        <h2 class="lp-section-title">実際の作成例</h2>
+        <p class="lp-section-subtitle">このツールで生成したYAMLをNotebookLMに渡して作成した実例です</p>
+        <div class="lp-samples-grid">
+          <div class="lp-sample-card">
+            <div class="lp-sample-image">
+              <img src="images/samples/sample_slide_swissminimal.png" alt="Swiss Minimalスタイルのスライド" loading="lazy">
+            </div>
+            <div class="lp-sample-info">
+              <span class="lp-sample-style">Swiss Minimal</span>
+              <span class="lp-sample-type">スライド資料</span>
+            </div>
+            <p class="lp-sample-desc">クリーンで洗練されたビジネス向けプレゼンテーション</p>
+          </div>
+          <div class="lp-sample-card">
+            <div class="lp-sample-image">
+              <img src="images/samples/sample_infograph_popart.png" alt="Pop Artスタイルのインフォグラフィック" loading="lazy">
+            </div>
+            <div class="lp-sample-info">
+              <span class="lp-sample-style">Pop Art</span>
+              <span class="lp-sample-type">インフォグラフィック</span>
+            </div>
+            <p class="lp-sample-desc">視覚的インパクトで情報を印象的に伝えるデザイン</p>
+          </div>
+        </div>
+        <div class="lp-samples-note">
+          <p>💡 <strong>NotebookLMご利用時の注意:</strong> スライド生成は1つのノートブックにつき数回の制限があります。失敗した場合は新しいノートブックを作成してお試しください。</p>
+        </div>
+      </div>
+    </section>
+
     <!-- For Who -->
     <section class="lp-for-who">
       <div class="lp-section">
@@ -187,6 +237,10 @@
           <div class="lp-faq-item">
             <p class="lp-faq-q">どんなAIで使えますか？</p>
             <p class="lp-faq-a">ChatGPT、Claude、NotebookLM、Geminiなど、主要な生成AIで使えます。プロンプトと一緒にYAMLを貼り付けてください。</p>
+          </div>
+          <div class="lp-faq-item">
+            <p class="lp-faq-q">NotebookLMでスライド生成に失敗します</p>
+            <p class="lp-faq-a">NotebookLMはスライド生成回数に制限があり、同一ノートブックでは数回で使用できなくなる場合があります。新しいノートブックを作成してお試しください。また、インフォグラフィック生成は比較的安定して動作します。</p>
           </div>
         </div>
       </div>
