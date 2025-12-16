@@ -1,0 +1,19 @@
+{
+  "name": "design-style-finder-pro",
+  "version": "1.0.0",
+  "description": "47 design styles finder - Compare and apply various design styles",
+  "private": true,
+  "scripts": {
+    "start": "npx serve .",
+    "preview": "npx serve . -p 3000"
+  },
+  "keywords": [
+    "design",
+    "style",
+    "finder",
+    "design-system",
+    "ui-design"
+  ],
+  "author": "",
+  "license": "MIT"
+}

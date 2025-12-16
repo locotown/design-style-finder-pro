@@ -1,0 +1,762 @@
+/* Design Style Finder Pro - Theme Styles */
+/* All 47 styles with color + font variables */
+
+/* ===== MINIMAL (9 Styles) ===== */
+
+/* Swiss Minimal */
+[data-style-theme="swiss"] {
+  --bg: #FFFFFF;
+  --bg-card: #F5F5F5;
+  --bg-hover: #EEEEEE;
+  --border: rgba(0,0,0,0.1);
+  --text: #000000;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --accent: #E53935;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Japanese Minimal */
+[data-style-theme="japanese"] {
+  --bg: #FAFAF8;
+  --bg-card: #F5F5F0;
+  --bg-hover: #EEEEEA;
+  --border: rgba(139,115,85,0.15);
+  --text: #1A1A1A;
+  --text-secondary: #5A5A5A;
+  --text-muted: #8B7355;
+  --accent: #8B7355;
+  --font-heading: 'Noto Serif JP', serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Nordic Minimal */
+[data-style-theme="nordic"] {
+  --bg: #F5F3EF;
+  --bg-card: #FFFFFF;
+  --bg-hover: #EBE9E5;
+  --border: rgba(45,52,54,0.1);
+  --text: #2D3436;
+  --text-secondary: #636E72;
+  --text-muted: #B2BEC3;
+  --accent: #74B9FF;
+  --font-heading: 'DM Sans', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+}
+
+/* Pure Monochrome */
+[data-style-theme="mono"] {
+  --bg: #FFFFFF;
+  --bg-card: #F5F5F5;
+  --bg-hover: #EEEEEE;
+  --border: rgba(0,0,0,0.15);
+  --text: #000000;
+  --text-secondary: #444444;
+  --text-muted: #666666;
+  --accent: #000000;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Editorial */
+[data-style-theme="editorial"] {
+  --bg: #FFFFFF;
+  --bg-card: #FAFAFA;
+  --bg-hover: #F5F5F5;
+  --border: rgba(0,0,0,0.1);
+  --text: #1A1A1A;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --accent: #999999;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Architectural */
+[data-style-theme="architectural"] {
+  --bg: #F5F5F5;
+  --bg-card: #FFFFFF;
+  --bg-hover: #EEEEEE;
+  --border: rgba(0,0,0,0.08);
+  --text: #1A1A1A;
+  --text-secondary: #555555;
+  --text-muted: #CCCCCC;
+  --accent: #CCCCCC;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Bauhaus */
+[data-style-theme="bauhaus"] {
+  --bg: #F5F5F0;
+  --bg-card: #FFFFFF;
+  --bg-hover: #EEEEEA;
+  --border: rgba(0,0,0,0.1);
+  --text: #1A1A1A;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+  --accent: #E53935;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Scandinavian Light */
+[data-style-theme="scandi"] {
+  --bg: #FFFFFF;
+  --bg-card: #F8F8F8;
+  --bg-hover: #F0F0F0;
+  --border: rgba(0,0,0,0.06);
+  --text: #333333;
+  --text-secondary: #666666;
+  --text-muted: #E8E8E8;
+  --accent: #333333;
+  --font-heading: 'DM Sans', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Zen */
+[data-style-theme="zen"] {
+  --bg: #E8E4DC;
+  --bg-card: #F0ECE4;
+  --bg-hover: #DCD8D0;
+  --border: rgba(61,61,61,0.1);
+  --text: #3D3D3D;
+  --text-secondary: #5D5D5D;
+  --text-muted: #D4CFC4;
+  --accent: #3D3D3D;
+  --font-heading: 'Noto Serif JP', serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* ===== TECH (8 Styles) ===== */
+
+/* Tech Dark */
+[data-style-theme="tech-dark"] {
+  --bg: #0F0F1A;
+  --bg-card: #1A1A28;
+  --bg-hover: #252538;
+  --border: rgba(255,255,255,0.08);
+  --text: #FFFFFF;
+  --text-secondary: #A0A0B0;
+  --text-muted: #606070;
+  --accent: #4285F4;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'JetBrains Mono', monospace;
+}
+
+/* Neon Glow */
+[data-style-theme="neon"] {
+  --bg: #0A0A0A;
+  --bg-card: #151515;
+  --bg-hover: #202020;
+  --border: rgba(0,255,136,0.2);
+  --text: #FFFFFF;
+  --text-secondary: #AAAAAA;
+  --text-muted: #666666;
+  --accent: #00FF88;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'JetBrains Mono', monospace;
+}
+
+/* Cyberpunk */
+[data-style-theme="cyber"] {
+  --bg: #1A0033;
+  --bg-card: #2A0055;
+  --bg-hover: #3A0077;
+  --border: rgba(255,0,255,0.3);
+  --text: #FFFFFF;
+  --text-secondary: #DD88FF;
+  --text-muted: #9944AA;
+  --accent: #FF00FF;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Terminal */
+[data-style-theme="terminal"] {
+  --bg: #0D1117;
+  --bg-card: #161B22;
+  --bg-hover: #21262D;
+  --border: rgba(201,209,217,0.1);
+  --text: #C9D1D9;
+  --text-secondary: #8B949E;
+  --text-muted: #484F58;
+  --accent: #7EE787;
+  --font-heading: 'JetBrains Mono', monospace;
+  --font-body: 'JetBrains Mono', monospace;
+}
+
+/* Matrix */
+[data-style-theme="matrix"] {
+  --bg: #0A0A0A;
+  --bg-card: #111111;
+  --bg-hover: #181818;
+  --border: rgba(0,255,65,0.15);
+  --text: #00FF41;
+  --text-secondary: #00CC33;
+  --text-muted: #008822;
+  --accent: #00FF41;
+  --font-heading: 'JetBrains Mono', monospace;
+  --font-body: 'JetBrains Mono', monospace;
+}
+
+/* Holographic */
+[data-style-theme="holographic"] {
+  --bg: #1A1A2E;
+  --bg-card: #252540;
+  --bg-hover: #303055;
+  --border: rgba(168,237,234,0.2);
+  --text: #FFFFFF;
+  --text-secondary: #A8EDEA;
+  --text-muted: #FED6E3;
+  --accent: #A8EDEA;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* AI Neural */
+[data-style-theme="ai"] {
+  --bg: #0F0F1A;
+  --bg-card: #1A1A28;
+  --bg-hover: #252538;
+  --border: rgba(66,133,244,0.2);
+  --text: #FFFFFF;
+  --text-secondary: #A0A0B0;
+  --text-muted: #606070;
+  --accent: #4285F4;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Dark Mode Pro */
+[data-style-theme="darkpro"] {
+  --bg: #18181B;
+  --bg-card: #27272A;
+  --bg-hover: #3F3F46;
+  --border: rgba(255,255,255,0.1);
+  --text: #FAFAFA;
+  --text-secondary: #A1A1AA;
+  --text-muted: #52525B;
+  --accent: #4285F4;
+  --font-heading: 'DM Sans', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* ===== CASUAL (8 Styles) ===== */
+
+/* Playful */
+[data-style-theme="playful"] {
+  --bg: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+  --bg-card: rgba(255,255,255,0.15);
+  --bg-hover: rgba(255,255,255,0.25);
+  --border: rgba(255,255,255,0.2);
+  --text: #FFFFFF;
+  --text-secondary: rgba(255,255,255,0.85);
+  --text-muted: rgba(255,255,255,0.6);
+  --accent: #FFFFFF;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+[data-style-theme="playful"] body {
+  background: linear-gradient(135deg, #667EEA 0%, #764BA2 100%);
+  background-attachment: fixed;
+}
+
+/* Soft Pastel */
+[data-style-theme="soft"] {
+  --bg: linear-gradient(135deg, #FFECD2 0%, #FCB69F 100%);
+  --bg-card: rgba(255,255,255,0.4);
+  --bg-hover: rgba(255,255,255,0.6);
+  --border: rgba(255,255,255,0.5);
+  --text: #5D4E6D;
+  --text-secondary: #7D6E8D;
+  --text-muted: #B8A8C8;
+  --accent: #FCB69F;
+  --font-heading: 'DM Sans', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+[data-style-theme="soft"] body {
+  background: linear-gradient(135deg, #FFECD2 0%, #FCB69F 100%);
+  background-attachment: fixed;
+}
+
+/* Fresh */
+[data-style-theme="fresh"] {
+  --bg: #FFFFFF;
+  --bg-card: #F0FFF4;
+  --bg-hover: #E0FFEA;
+  --border: rgba(132,250,176,0.3);
+  --text: #1A1A1A;
+  --text-secondary: #555555;
+  --text-muted: #84FAB0;
+  --accent: #84FAB0;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Rounded Card */
+[data-style-theme="rounded"] {
+  --bg: #F8F9FA;
+  --bg-card: #FFFFFF;
+  --bg-hover: #F0F1F2;
+  --border: rgba(0,0,0,0.08);
+  --text: #1A1A1A;
+  --text-secondary: #555555;
+  --text-muted: #AAAAAA;
+  --accent: #FFD93D;
+  --font-heading: 'DM Sans', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Kawaii */
+[data-style-theme="kawaii"] {
+  --bg: linear-gradient(135deg, #FFC3D8 0%, #D4A5FF 100%);
+  --bg-card: rgba(255,255,255,0.5);
+  --bg-hover: rgba(255,255,255,0.7);
+  --border: rgba(255,255,255,0.6);
+  --text: #5D3F6A;
+  --text-secondary: #7D5F8A;
+  --text-muted: #B8A8C8;
+  --accent: #FF88B8;
+  --font-heading: 'DM Sans', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+[data-style-theme="kawaii"] body {
+  background: linear-gradient(135deg, #FFC3D8 0%, #D4A5FF 100%);
+  background-attachment: fixed;
+}
+
+/* Organic */
+[data-style-theme="organic"] {
+  --bg: #F9F7F4;
+  --bg-card: #FFFFFF;
+  --bg-hover: #F0EDE8;
+  --border: rgba(197,225,165,0.4);
+  --text: #2D4A1C;
+  --text-secondary: #4A6A3C;
+  --text-muted: #C5E1A5;
+  --accent: #C5E1A5;
+  --font-heading: 'DM Sans', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Friendly App */
+[data-style-theme="friendly"] {
+  --bg: #4361EE;
+  --bg-card: rgba(255,255,255,0.15);
+  --bg-hover: rgba(255,255,255,0.25);
+  --border: rgba(255,255,255,0.2);
+  --text: #FFFFFF;
+  --text-secondary: rgba(255,255,255,0.85);
+  --text-muted: rgba(255,255,255,0.6);
+  --accent: #FFFFFF;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Memphis */
+[data-style-theme="memphis"] {
+  --bg: #F5F5F5;
+  --bg-card: #FFFFFF;
+  --bg-hover: #EEEEEE;
+  --border: rgba(0,0,0,0.1);
+  --text: #1A1A1A;
+  --text-secondary: #555555;
+  --text-muted: #888888;
+  --accent: #FF6B6B;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* ===== PREMIUM (8 Styles) ===== */
+
+/* Luxury Gold */
+[data-style-theme="luxury"] {
+  --bg: #0A0A0A;
+  --bg-card: #151515;
+  --bg-hover: #202020;
+  --border: rgba(212,175,55,0.3);
+  --text: #FFFFFF;
+  --text-secondary: #CCCCCC;
+  --text-muted: #666666;
+  --accent: #D4AF37;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Brutalist */
+[data-style-theme="brutalist"] {
+  --bg: #000000;
+  --bg-card: #111111;
+  --bg-hover: #222222;
+  --border: rgba(255,255,255,0.4);
+  --text: #FFFFFF;
+  --text-secondary: #CCCCCC;
+  --text-muted: #888888;
+  --accent: #FFFFFF;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'JetBrains Mono', monospace;
+}
+
+/* Art Deco */
+[data-style-theme="artdeco"] {
+  --bg: #1A1A2E;
+  --bg-card: #252540;
+  --bg-hover: #303055;
+  --border: rgba(212,175,55,0.4);
+  --text: #FFFFFF;
+  --text-secondary: #D4AF37;
+  --text-muted: #888888;
+  --accent: #D4AF37;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Marble */
+[data-style-theme="marble"] {
+  --bg: #F5F5F5;
+  --bg-card: #FFFFFF;
+  --bg-hover: #EEEEEE;
+  --border: rgba(0,0,0,0.08);
+  --text: #1A1A1A;
+  --text-secondary: #555555;
+  --text-muted: #AAAAAA;
+  --accent: #1A1A1A;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Film Noir */
+[data-style-theme="noir"] {
+  --bg: #1A1A1A;
+  --bg-card: #252525;
+  --bg-hover: #303030;
+  --border: rgba(255,255,255,0.1);
+  --text: #FFFFFF;
+  --text-secondary: #CCCCCC;
+  --text-muted: #666666;
+  --accent: #FFFFFF;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Classic Serif */
+[data-style-theme="serif"] {
+  --bg: #FFFEF9;
+  --bg-card: #FFFFFF;
+  --bg-hover: #F8F7F2;
+  --border: rgba(0,0,0,0.08);
+  --text: #1A1A1A;
+  --text-secondary: #555555;
+  --text-muted: #AAAAAA;
+  --accent: #1A1A1A;
+  --font-heading: 'Crimson Pro', serif;
+  --font-body: 'Crimson Pro', serif;
+}
+
+/* Museum */
+[data-style-theme="museum"] {
+  --bg: #FAFAFA;
+  --bg-card: #FFFFFF;
+  --bg-hover: #F5F5F5;
+  --border: rgba(0,0,0,0.06);
+  --text: #1A1A1A;
+  --text-secondary: #666666;
+  --text-muted: #999999;
+  --accent: #999999;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Fashion */
+[data-style-theme="fashion"] {
+  --bg: #000000;
+  --bg-card: #111111;
+  --bg-hover: #1A1A1A;
+  --border: rgba(255,255,255,0.15);
+  --text: #FFFFFF;
+  --text-secondary: #CCCCCC;
+  --text-muted: #666666;
+  --accent: #FFFFFF;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* ===== CREATIVE (8 Styles) ===== */
+
+/* Geometric */
+[data-style-theme="geometric"] {
+  --bg: #1A1A2E;
+  --bg-card: #252540;
+  --bg-hover: #303055;
+  --border: rgba(233,69,96,0.3);
+  --text: #FFFFFF;
+  --text-secondary: #CCCCCC;
+  --text-muted: #666666;
+  --accent: #E94560;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Retro */
+[data-style-theme="retro"] {
+  --bg: #FEF3C7;
+  --bg-card: #FFFBEB;
+  --bg-hover: #FEF0B0;
+  --border: rgba(120,53,15,0.2);
+  --text: #78350F;
+  --text-secondary: #92400E;
+  --text-muted: #B45309;
+  --accent: #78350F;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Bold Gradient */
+[data-style-theme="gradient"] {
+  --bg: linear-gradient(135deg, #F093FB 0%, #F5576C 50%, #4FACFE 100%);
+  --bg-card: rgba(255,255,255,0.2);
+  --bg-hover: rgba(255,255,255,0.3);
+  --border: rgba(255,255,255,0.3);
+  --text: #FFFFFF;
+  --text-secondary: rgba(255,255,255,0.9);
+  --text-muted: rgba(255,255,255,0.6);
+  --accent: #FFFFFF;
+  --font-heading: 'Poppins', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+[data-style-theme="gradient"] body {
+  background: linear-gradient(135deg, #F093FB 0%, #F5576C 50%, #4FACFE 100%);
+  background-attachment: fixed;
+}
+
+/* Duotone */
+[data-style-theme="duotone"] {
+  --bg: #1A1A2E;
+  --bg-card: #252540;
+  --bg-hover: #303055;
+  --border: rgba(79,172,254,0.3);
+  --text: #FFFFFF;
+  --text-secondary: #4FACFE;
+  --text-muted: #00F2FE;
+  --accent: #4FACFE;
+  --font-heading: 'Space Grotesk', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Pop Art */
+[data-style-theme="popart"] {
+  --bg: #FFEB3B;
+  --bg-card: #FFFFFF;
+  --bg-hover: #FFF176;
+  --border: rgba(0,0,0,0.15);
+  --text: #1A1A1A;
+  --text-secondary: #FF5722;
+  --text-muted: #888888;
+  --accent: #FF5722;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Collage */
+[data-style-theme="collage"] {
+  --bg: #F5F5F5;
+  --bg-card: #FFFFFF;
+  --bg-hover: #EEEEEE;
+  --border: rgba(0,0,0,0.1);
+  --text: #1A1A1A;
+  --text-secondary: #555555;
+  --text-muted: #E0E0E0;
+  --accent: #4285F4;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Grunge */
+[data-style-theme="grunge"] {
+  --bg: #2A2A2A;
+  --bg-card: #353535;
+  --bg-hover: #404040;
+  --border: rgba(224,224,224,0.15);
+  --text: #E0E0E0;
+  --text-secondary: #AAAAAA;
+  --text-muted: #666666;
+  --accent: #E0E0E0;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Experimental */
+[data-style-theme="experimental"] {
+  --bg: #0A0A0A;
+  --bg-card: #151515;
+  --bg-hover: #202020;
+  --border: rgba(255,0,0,0.3);
+  --text: #FFFFFF;
+  --text-secondary: #CCCCCC;
+  --text-muted: #666666;
+  --accent: #FF0000;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* ===== CORPORATE (6 Styles) ===== */
+
+/* Corporate Blue */
+[data-style-theme="corporate"] {
+  --bg: #FFFFFF;
+  --bg-card: #F8FAFC;
+  --bg-hover: #F1F5F9;
+  --border: rgba(59,130,246,0.15);
+  --text: #1E293B;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --accent: #3B82F6;
+  --font-heading: 'DM Sans', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Data Driven */
+[data-style-theme="data"] {
+  --bg: #F8FAFC;
+  --bg-card: #FFFFFF;
+  --bg-hover: #F1F5F9;
+  --border: rgba(59,130,246,0.1);
+  --text: #1E293B;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --accent: #3B82F6;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Consulting */
+[data-style-theme="consulting"] {
+  --bg: #1E3A5F;
+  --bg-card: #2A4A72;
+  --bg-hover: #355A85;
+  --border: rgba(96,165,250,0.2);
+  --text: #FFFFFF;
+  --text-secondary: #CBD5E1;
+  --text-muted: #64748B;
+  --accent: #60A5FA;
+  --font-heading: 'DM Sans', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Finance */
+[data-style-theme="finance"] {
+  --bg: #0F172A;
+  --bg-card: #1E293B;
+  --bg-hover: #334155;
+  --border: rgba(16,185,129,0.2);
+  --text: #F8FAFC;
+  --text-secondary: #CBD5E1;
+  --text-muted: #64748B;
+  --accent: #10B981;
+  --font-heading: 'Outfit', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Healthcare */
+[data-style-theme="healthcare"] {
+  --bg: #F0FDF4;
+  --bg-card: #FFFFFF;
+  --bg-hover: #DCFCE7;
+  --border: rgba(22,163,74,0.15);
+  --text: #166534;
+  --text-secondary: #15803D;
+  --text-muted: #86EFAC;
+  --accent: #16A34A;
+  --font-heading: 'DM Sans', sans-serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* Legal */
+[data-style-theme="legal"] {
+  --bg: #1C1917;
+  --bg-card: #292524;
+  --bg-hover: #3C3836;
+  --border: rgba(250,250,249,0.1);
+  --text: #FAFAF9;
+  --text-secondary: #D6D3D1;
+  --text-muted: #78716C;
+  --accent: #FAFAF9;
+  --font-heading: 'Playfair Display', serif;
+  --font-body: 'Noto Sans JP', sans-serif;
+}
+
+/* ===== Global Theme Overrides ===== */
+
+/* Apply font variables to all themed elements */
+[data-style-theme] header h1,
+[data-style-theme] .tone-title,
+[data-style-theme] .style-name,
+[data-style-theme] .detail-title {
+  font-family: var(--font-heading);
+}
+
+[data-style-theme] body,
+[data-style-theme] .tone-btn,
+[data-style-theme] .style-desc,
+[data-style-theme] .style-tag,
+[data-style-theme] .detail-section,
+[data-style-theme] .purpose-tab {
+  font-family: var(--font-body);
+}
+
+/* Button styles for themed pages */
+[data-style-theme] .tone-btn.active {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+[data-style-theme] .tone-btn:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+}
+
+[data-style-theme] .apply-style-btn {
+  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 70%, #000));
+}
+
+[data-style-theme] .apply-style-btn:hover {
+  box-shadow: 0 4px 12px color-mix(in srgb, var(--accent) 40%, transparent);
+}
+
+[data-style-theme] .feature-tag {
+  background: color-mix(in srgb, var(--accent) 15%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 25%, transparent);
+  color: var(--accent);
+}
+
+[data-style-theme] .search-box input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 20%, transparent);
+}
+
+[data-style-theme] .style-card:hover {
+  border-color: var(--accent);
+}
+
+[data-style-theme] .header-badge {
+  background: linear-gradient(135deg, var(--accent), color-mix(in srgb, var(--accent) 60%, #000));
+}
+
+[data-style-theme] .current-theme-badge {
+  background: var(--accent);
+}
+
+/* Code block styling adjustments */
+[data-style-theme] .yaml-block {
+  background: color-mix(in srgb, var(--bg) 95%, #000);
+}
+
+[data-style-theme] .yaml-header {
+  background: color-mix(in srgb, var(--bg-card) 90%, #000);
+}
+
+[data-style-theme] .copy-btn {
+  background: var(--accent);
+}
