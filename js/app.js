@@ -1,5 +1,12 @@
 // Design Style Finder Pro - Application Logic
 
+// ===== GA4 Event Tracking =====
+function trackEvent(eventName, params = {}) {
+  if (typeof gtag === 'function') {
+    gtag('event', eventName, params);
+  }
+}
+
 // ===== DOM Elements =====
 const toneNav = document.getElementById('toneNav');
 const detailPanel = document.getElementById('detailPanel');
@@ -38,6 +45,8 @@ function saveFavorites() {
 
 function toggleFavorite(styleId) {
   const index = favorites.indexOf(styleId);
+  const isAdding = index === -1;
+
   if (index > -1) {
     favorites.splice(index, 1);
   } else {
@@ -46,6 +55,16 @@ function toggleFavorite(styleId) {
   saveFavorites();
   updateFavoritesUI();
   updateFavoritesCount();
+
+  // GA4: お気に入りトグル
+  const style = styles.find(s => s.id === styleId);
+  if (style) {
+    trackEvent('favorite_toggle', {
+      style_id: styleId,
+      style_name: style.name,
+      action: isAdding ? 'add' : 'remove'
+    });
+  }
 }
 
 // ===== Tone Navigation =====
@@ -295,10 +314,26 @@ function updateGridWithSearch() {
   });
 }
 
+// 検索イベント用デバウンス
+let searchTrackTimeout = null;
+
 function setupSearch() {
   searchInput.addEventListener('input', (e) => {
     currentSearchTerm = e.target.value;
     updateGridWithSearch();
+
+    // GA4: 検索（デバウンス処理、500ms後に発火）
+    clearTimeout(searchTrackTimeout);
+    if (currentSearchTerm.trim()) {
+      searchTrackTimeout = setTimeout(() => {
+        const activeTone = document.querySelector('.tone-btn.active')?.dataset.tone || 'all';
+        const resultCount = filterStyles(currentSearchTerm, activeTone).length;
+        trackEvent('search', {
+          search_term: currentSearchTerm,
+          result_count: resultCount
+        });
+      }, 500);
+    }
   });
 
   clearSearchBtn.addEventListener('click', () => {
@@ -349,6 +384,13 @@ function openDetail(style) {
   currentDetailStyle = style;
   document.getElementById('detailTitle').textContent = `${style.name} / ${style.nameJp}`;
 
+  // GA4: スタイル詳細表示
+  trackEvent('style_view', {
+    style_id: style.id,
+    style_name: style.name,
+    style_tone: style.tone
+  });
+
   // プレビュー
   const previewContainer = document.getElementById('detailPreview');
   previewContainer.replaceChildren(createPreviewContent(style.id, style.previewClass));
@@ -396,6 +438,15 @@ function setupDetailPanel() {
       this.textContent = 'コピー完了！';
       this.classList.add('copied');
       setTimeout(() => { this.textContent = 'コピー'; this.classList.remove('copied'); }, 2000);
+
+      // GA4: YAMLコピー
+      if (currentDetailStyle) {
+        trackEvent('yaml_copy', {
+          style_id: currentDetailStyle.id,
+          style_name: currentDetailStyle.name,
+          purpose: currentPurpose
+        });
+      }
     });
   };
 }
@@ -621,6 +672,16 @@ function applyStyleTheme(styleId) {
   currentAppliedTheme = styleId;
   updateApplyButtonState();
   updateThemeBadge();
+
+  // GA4: テーマ適用
+  const style = styles.find(s => s.id === styleId);
+  if (style) {
+    trackEvent('theme_apply', {
+      style_id: styleId,
+      style_name: style.name,
+      style_tone: style.tone
+    });
+  }
 }
 
 function resetStyleTheme() {
@@ -746,6 +807,12 @@ function openCompareModal() {
   renderCompareGrid();
   compareModal.classList.add('open');
   compareOverlay.classList.add('open');
+
+  // GA4: 比較モーダル表示
+  trackEvent('compare_open', {
+    compare_count: compareStyles.length,
+    style_ids: compareStyles.join(',')
+  });
 }
 
 function closeCompareModal() {
